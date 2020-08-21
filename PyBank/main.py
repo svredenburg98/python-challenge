@@ -1,5 +1,6 @@
 import os
 import csv
+import sys
 
 csv_path = os.path.join("H:/RICEBOOTCAMP/Homework/python-challenge/PyBank/Resources/budget_data.csv")
 
@@ -64,5 +65,21 @@ with open(csv_path, 'r') as csvfile:
 
     print(f"Greatest Increase in Profits: {GreatestMonth} ({ProfitChangeInitial})")
     print(f"Greatest Decrease in Profits: {WorstMonth} ({ProfitLossInitial})")
+
+    sys.stdout = open("PyBank/Analysis/analysis.txt", "w")
+    
+    print("Financial Analysis")
+    print("-"*40)
+    print(f"Total Months: {TotalMonths}")
+    print(f"Total Profit/Loss: {TotalProfitLoss}")
+    
+    print(f"Average Change: {AverageChange}")
+   
+
+    print(f"Greatest Increase in Profits: {GreatestMonth} ({ProfitChangeInitial})")
+    print(f"Greatest Decrease in Profits: {WorstMonth} ({ProfitLossInitial})")
+
+    sys.stdout.close()
+
     
 
