@@ -12,9 +12,11 @@ with open(csv_path, 'r') as csvfile:
     print(header)
 
     TotalMonths = 0
-    #Months = []
+    
     ## Initialize the change in profit
     ProfitChangeInitial = 0
+
+    ProfitLossInitial = 0
 
     TotalProfitLoss = 0
     
@@ -26,7 +28,7 @@ with open(csv_path, 'r') as csvfile:
 
         TotalMonths +-1
         
-        #Months.append(rows[0])
+        
         Profit = float(rows[1])
         TotalProfitLoss = TotalProfitLoss + Profit
        
@@ -36,13 +38,12 @@ with open(csv_path, 'r') as csvfile:
         ProfitInitial = Profit
 
         if ProfitChangeCurrent > ProfitChangeInitial:
-            #GreatestIncreaseValue = ProfitChangeCurrent
-            #GreatestIncreaseMonth = rows[0]
+
             ProfitChangeInitial = ProfitChangeCurrent
             GreatestMonth = rows[0]
-        #elif ProfitChangeCurrent < ProfitChangeInitial:
-            #GreatestLossValue = ProfitChangeCurrent
-            #GreatestLossMonth = rows[0]
+        if ProfitChangeCurrent < ProfitLossInitial:
+            ProfitLossInitial = ProfitChangeCurrent
+            WorstMonth = rows[0]
            
 
 
@@ -51,17 +52,17 @@ with open(csv_path, 'r') as csvfile:
     ProfitChangeNew = (ProfitChange[1:(len(ProfitChange))])
     TotalChange = sum(ProfitChangeNew)
     AverageChange = TotalChange / (len(ProfitChangeNew))
-    #MonthChange = dict(zip(Months, ProfitChange))
-    #ProfitChangeNew.sort()
+    
+    
     print("Financial Analysis")
     print("-"*40)
     print(f"Total Months: {TotalMonths}")
     print(f"Total Profit/Loss: {TotalProfitLoss}")
-    #print(ProfitChange)
+    
     print(f"Average Change: {AverageChange}")
-    #print(f"Greatest Increase: {ProfitChangeNew[len(ProfitChangeNew) -1]}")
-    #print(f"Greatest Decrease: {ProfitChangeNew[0]}")
-    #print(MonthChange)
+   
+
     print(f"Greatest Increase in Profits: {GreatestMonth} ({ProfitChangeInitial})")
+    print(f"Greatest Decrease in Profits: {WorstMonth} ({ProfitLossInitial})")
     
 
