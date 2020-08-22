@@ -28,7 +28,7 @@ with open(csv_path, 'r') as csvfile:
     
     for rows in reader:
 
-        TotalMonths +-1
+        TotalMonths +=1
         
         
         Profit = float(rows[1])
