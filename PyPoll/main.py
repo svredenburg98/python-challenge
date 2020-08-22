@@ -3,6 +3,7 @@ import csv
 import sys
 
 csv_path = os.path.join("H:/RICEBOOTCAMP/Homework/python-challenge/PyPoll/Resources/election_data.csv")
+#csv_path = os.path.join("..", "Resources", "election_data.csv")
 
 with open(csv_path, 'r') as csvfile:
     
