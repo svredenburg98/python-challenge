@@ -42,11 +42,6 @@ with open(csv_path, 'r') as csvfile:
             Winner.append(candidates[vote])
 
 
-        
-print(votes)
-print(Winner)
-print(f"Total Votes: {totalVotes}")
-print(Percentages)
 
 print("Election Results")
 print("-"*30)
@@ -58,3 +53,18 @@ print(f"{candidates[2]}: {Percentages[2]}% ({votes[2]})")
 print(f"{candidates[3]}: {Percentages[3]}% ({votes[3]})")
 print("-"*30)
 print("Winner: " + str(Winner[0]))
+
+sys.stdout = open("PyPoll/Analysis/vote_analysis.txt", "w")
+    
+print("Election Results")
+print("-"*30)
+print("Total Votes: " + str(totalVotes))
+print("-"*30)
+print(f"{candidates[0]}: {Percentages[0]}% ({votes[0]})")
+print(f"{candidates[1]}: {Percentages[1]}% ({votes[1]})")
+print(f"{candidates[2]}: {Percentages[2]}% ({votes[2]})")
+print(f"{candidates[3]}: {Percentages[3]}% ({votes[3]})")
+print("-"*30)
+print("Winner: " + str(Winner[0]))
+
+sys.stdout.close()
