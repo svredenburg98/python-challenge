@@ -11,13 +11,10 @@ with open(csv_path, 'r') as csvfile:
     header = next(reader)
 
     totalVotes = 0
-    vote1=0
-    vote2=0
-    vote3=0
-    vote4=0
-    votepercents = []
-   
+  
     candidates = []
+
+    votes = []
     for rows in reader:
 
 
@@ -26,30 +23,28 @@ with open(csv_path, 'r') as csvfile:
         if rows[2] not in candidates:
             
             candidates.append(rows[2])
+            votes.append(1)
+
+        else:
+            candidate_index = candidates.index(rows[2])
+            votes[candidate_index] +=1
+
+    MostVotes = 0
+    Winner = []
+    Percentages = []
+    for vote in range(len(votes)):
+
+        percent = round((votes[vote] / totalVotes)*100, 2)
+        Percentages.append(percent)
+
+        if votes[vote] > MostVotes:
+            MostVotes = votes[vote]
+            Winner.append(candidates[vote])
+
 
         
-        if rows[2] == candidates[0]:
-            vote1 +=1
-        elif rows[2] == candidates[1]:
-            vote2 +=1
-        elif rows[2] == candidates[2]:
-            vote3 +=1
-        elif rows[2] == candidates[3]:
-            vote4 +=1
-        
-    votecounts = [vote1, vote2, vote3, vote4]
-    
-    for count in votecounts:
-        percent = round(((count/totalVotes)*100), 2)
-        votepercents.append(percent)
-        
-
-        
-
+print(votes)
+print(Winner)
 print(f"Total Votes: {totalVotes}")
-print(f" {candidates[0]}: {votepercents[0]}% ({vote1})")
-print(f" {candidates[1]}: {votepercents[1]}% ({vote2})")
-print(f" {candidates[2]}: {votepercents[2]}% ({vote3})")
-print(f" {candidates[3]}: {votepercents[3]}% ({vote4})")
-print(votecounts)
-print(votepercents)
+print(Percentages)
+
